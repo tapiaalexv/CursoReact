@@ -4,7 +4,7 @@ fetch('https://pokeapi.co/api/v2/pokemon/')
     )
     .then((data) => {
         console.log(data.results)
-        data.result.forEach(element => {
+        data.results.forEach(element => {
             console.log(element.name);
         });
     })
@@ -15,8 +15,10 @@ const obtenerPokemons = async() => {
     try{
         const res = await fetch('https://pokeapi.co/api/v2/pokemon/');
         const data = await res.json();
-        console.log(data.result)
+        console.log(data.results)
     }catch(error){
         console.log(error);
     }
 }
+
+obtenerPokemons()
