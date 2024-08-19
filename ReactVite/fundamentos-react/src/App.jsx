@@ -1,5 +1,7 @@
 import imgDigimon from './assets/imgs/agumon.webp';
 import PropTypes from "prop-types";
+import MyButtonComp from "./components/MyButton.jsx";
+import {WelcomeText} from "./components/WelcomeText.jsx";
 
 const MyButton = (props) => {
     return (
@@ -44,12 +46,48 @@ Fruits.propTypes = {
     frut: PropTypes.string.isRequired,
 }
 
-const WelcomeText = ({user}) => (user ? <h3>Online</h3> : <h3>Offline</h3>);
+const WelcomeTextOrg = ({user}) => (user ? <h3>Online</h3> : <h3>Offline</h3>);
 /*if(user) return <h3>Online</h3>;
 return <h3>Offline</h3>;*/
-WelcomeText.propTypes = {
+WelcomeTextOrg.propTypes = {
     user: PropTypes.bool.isRequired,
 }
+
+const MyButton3 = ({text}) => (
+    <button
+        onClick={() => {
+            console.log('me diste click');
+        }}
+    >
+        {text}
+    </button>
+);
+
+MyButton3.propTypes = {
+    text: PropTypes.string.isRequired,
+};
+
+const handleOnClick = () => {
+    console.log('me diste click desde la funcion');
+}
+const MyButton4 = ({text}) => (
+    <button onClick={handleOnClick}>
+        {text}
+    </button>
+);
+MyButton4.propTypes = {
+    text: PropTypes.string.isRequired,
+};
+
+const MyButton5 = ({text}) => {
+    const handleOnClick = (tittle) => {
+        console.log('handle click '+tittle);
+    }
+    return <button onClick={()=>handleOnClick(text)}> {text} </button>;
+}
+MyButton5.propTypes = {
+    text: PropTypes.string.isRequired,
+};
 
 const App = () => {
 
@@ -58,7 +96,6 @@ const App = () => {
     //const pathImg = "src/assets/imgs/agumon.webp";
     const user = false;
     const fruts = ["🤡", "🥵", "😎"];
-
 
     return (
         <>
@@ -89,6 +126,9 @@ const App = () => {
                 }
             </ul>
             <WelcomeText user={user}/>
+            <MyButton3 text={'hola3'}/>
+            <MyButton4 text={'hola4'}/>
+            <MyButton5 text={'hola5'}/>
 
         </>
     );
